@@ -1,0 +1,9 @@
+@id("alumni_restricted_access")
+permit(
+  principal,
+  action in Jans::Action::"Search",
+  resource is Jans::student
+)
+when {
+   ((resource["grad_year"]) < 2026) || (principal in Jans::Role::"AdmissionsCounselor")
+};
